@@ -1,10 +1,18 @@
 import React from 'react';
+import { DIContainer } from './services/di/index';
+import { DIProvider } from './services/di/provider';
+import { Application } from './components/Application';
 import { createRoot } from 'react-dom/client';
-import Application from './components/Application';
+import { DynamicInfo, ModalProvider, ModalTypeDefinition } from 'services/modal-manager';
+import './reset.css';
 
-// Say something
-console.log('[ERWT] : Renderer execution started');
+const di = new DIContainer();
 
-const app = <Application />;
-
-createRoot(document.getElementById('app')).render(app);
+createRoot(document.getElementById('app')).render(
+  <DIProvider di={di}>
+    <ModalProvider>
+      <Application />
+      <ModalTypeDefinition id="modal" component={DynamicInfo} />
+    </ModalProvider>
+  </DIProvider>
+);

@@ -1,86 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { Col, Layout, Row, theme, Grid } from 'antd';
+import { useService } from 'services/di/provider';
+import { CoinTable } from './coin-table';
+import { CoinsSelector } from './coins-selector';
+import { CurrencySelector } from './currency-selector';
+import { Header } from './header';
+import { Footer } from './footer';
 
-const Application: React.FC = () => {
-  const [counter, setCounter] = useState(0);
-  const [darkTheme, setDarkTheme] = useState(true);
+export const Application: React.FC = () => {
+  const {
+    token: { colorBgContainer }
+  } = theme.useToken();
 
-  /**
-   * On component mount
-   */
+  const screens = Grid.useBreakpoint();
+  const store = useService('RootStore');
+  const modalManager = useService('ModalManager');
+
   useEffect(() => {
-    const useDarkTheme = parseInt(localStorage.getItem('dark-mode'));
-    if (isNaN(useDarkTheme)) {
-      setDarkTheme(true);
-    } else if (useDarkTheme == 1) {
-      setDarkTheme(true);
-    } else if (useDarkTheme == 0) {
-      setDarkTheme(false);
-    }
+    store.referenceData.loadCurrencies();
+    store.referenceData.loadCoins();
   }, []);
 
-  /**
-   * On Dark theme change
-   */
-  useEffect(() => {
-    if (darkTheme) {
-      localStorage.setItem('dark-mode', '1');
-      document.body.classList.add('dark-mode');
-    } else {
-      localStorage.setItem('dark-mode', '0');
-      document.body.classList.remove('dark-mode');
-    }
-  }, [darkTheme]);
-
-  /**
-   * Toggle Theme
-   */
-  function toggleTheme() {
-    setDarkTheme(!darkTheme);
-  }
+  const displayChart = useCallback((coinID: string) => {
+    modalManager.show({
+      type: 'modal',
+      component: 'CoinChart',
+      props: {
+        coinID
+      }
+    });
+  }, []);
 
   return (
-    <div id="erwt">
-      <div className="header">
-        <div className="main-heading">
-          <h1 className="themed">React Webpack Typescript</h1>
-        </div>
-        <div className="main-teaser">
-          <div>
-            Robustqqqqqwww boilerplate for Desktop Applications with Electron and ReactJS.
-            Hot Reloading is used in this project for fast development experience.
-            <br />
-            If you think the project is useful enough, just spread the word around!
-          </div>
-        </div>
-      </div>
-
-      <div className="footer">
-        <div className="center">
-          <button
-            onClick={() => {
-              if (counter > 99) return alert('Going too high!!');
-              setCounter(counter + 1);
-            }}
-          >
-            Increment {counter != 0 ? counter : ''} <span>{counter}</span>
-          </button>
-          &nbsp;&nbsp; &nbsp;&nbsp;
-          <button
-            onClick={() => {
-              if (counter == 0) return alert('Oops.. thats not possible!');
-              setCounter(counter > 0 ? counter - 1 : 0);
-            }}
-          >
-            Decrement <span>{counter}</span>
-          </button>
-          &nbsp;&nbsp; &nbsp;&nbsp;
-          <button onClick={toggleTheme}>
-            {darkTheme ? 'Light Theme' : 'Dark Theme'}
-          </button>
-        </div>
-      </div>
-    </div>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header onSearch={displayChart} />
+      <Layout style={{ padding: '24px 20px', background: colorBgContainer }}>
+        <Row gutter={[8, 8]}>
+          <Col span={screens.sm ? 14 : 24}>
+            <CoinsSelector />
+            <CoinTable onClick={displayChart} />
+          </Col>
+          <Col span={screens.sm ? 10 : 24}>
+            <CurrencySelector />
+          </Col>
+        </Row>
+      </Layout>
+      <Footer />
+    </Layout>
   );
 };
-
-export default Application;

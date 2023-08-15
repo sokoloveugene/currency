@@ -1,115 +1,46 @@
-# React Webpack Typescript (RWT)
+# Crypto Price Viewer
 
-React Webpack Typescript Boilerplate with custom webpack configurations for hot reloading.
+## Preview
+https://64dbb849f709ab1189c69b04--genuine-rugelach-aba10a.netlify.app/
 
-A minimal secure boilerplate for writing Web Applications using [React](https://reactjs.org/), [Webpack](https://webpack.js.org/) & [TypeScript](https://www.typescriptlang.org/). <br /> This project makes use of latest packages and configurations to serve the best environment for development.
+## Getting Started
 
-<br>
+To run the Crypto Price Viewer application locally, follow these steps:
 
-## Screenshot
+- Clone the repository: git clone https://github.com/sokoloveugene/currency
+- Navigate to the project directory:
+- Install dependencies: npm install
+- Start the development server: npm start
+- Application will be available at http://localhost:8080
 
-<img src="assets/images/screenshot.png" />
+## Build & serve
 
-<br>
+- Build optimized bundle: npm run build
+- Run comand to serve optimized application: npm run serve
+- Application will be available at http://localhost:3000
 
-## Core Features
+## Main Features
 
-- ⚛️ React
-- 🌀 TypeScript
-- 🥗 SASS/SCSS Loader
-- 🛶 LESS Loader (optional)
-- 🎨 CSS Loader
-- 📸 Image Loader
-- 🆎 Font Loader
-- 🧹 ESLint
-- 🔱 Webpack & Configuration
-- 🧩 Aliases for Project Paths
-- 🔥 React Fast Refresh + Webpack HMR
-- 🌞 Dark Mode + Light Mode (Theme)
+- View Crypto Currency Prices: Stay updated with real-time cryptocurrency prices from various sources.
+- Select Multiple Crypto Currencies: Choose and track the cryptocurrencies that interest you. Monitor their prices, changes, and trends.
+- Multiple Currencies: Besides crypto-to-crypto comparisons, you can also view prices in multiple fiat currencies, enhancing your market analysis.
+- Prices are automatically refreshed every minute.
+- Fallback Mechanism: In case the API service is unavailable, the app seamlessly switches to a fallback mechanism, ensuring a smoother user experience.
+- Interactive Price Charts: Dive deeper into historical data with interactive charts displaying price trends over different time frames: 1 day, 5 days, 1 month, and 1 year. (Click name of the coin from tabel OR search from header)
+- Persistent Selections: Your selected cryptocurrencies and preferred settings are automatically saved in the browser's local storage, so you don't lose your preferences between sessions.
+- Dependency Injection: The application leverages the power of dependency injection to maintain a clean and modular codebase, making it easier to manage and scale.
 
-<br />
+## Technologies Used
 
-## Installation
+- MobX: MobX is employed for efficient state management, ensuring seamless data synchronization across the application.
+- Ant Design: The UI components from Ant Design provide a polished and user-friendly interface, enhancing the overall user experience.
+- BottleJS: The usage of BottleJS enables dependency injection, promoting modularity and maintainability within the application's architecture.
+- Chart.js: Interactive and visually appealing charts powered by Chart.js offer a comprehensive view of cryptocurrency price trends.
 
-#### To install this boilerplate you need to run following commands
+<div align="center">
+    <img src="./assets/images/main.png" alt="main-view" />
+</div>
 
-<br>
-
-Clone the repository :
-
-```bash
-git clone https://github.com/codesbiome/react-webpack-typescript-2022
-```
-
-<br>
-
-Install dependencies using Yarn or NPM or PNPM :
-
-```bash
-# using pnpm
-pnpm install
-
-# or using yarn
-yarn install
-
-# or using npm
-npm install
-```
-
-<br />
-
-## Start : Development
-
-To develop and run your web application, you need to run following command :
-
-```bash
-yarn start
-```
-
-<br />
-
-## Lint : Development
-
-To lint application source code using ESLint via this command :
-
-```bash
-yarn lint
-```
-
-<br />
-
-## Build : Production
-
-Distribution files output will be generated in `dist/` directory by default.
-
-To build the production ready files for distribution, use the following command :
-
-```bash
-yarn build
-```
-
-<br />
-
-## Serve : Production
-
-Serve helps you serve a static site, single page application or just a static file. It also provides a neat interface for listing the directory's contents. This command serves build files from `dist/` directory.
-
-```bash
-yarn serve
-```
-
-<br />
-
-## Webpack Configurations
-
-To make it easier for managing environment based webpack configurations, we using separated `development` and `production` configuration files, they are available in :
-
-```bash
-# Development webpack config
-tools/webpack/webpack.config.dev.js
-
-# Production webpack config
-tools/webpack/webpack.config.prod.js
-```
-
-For further information, you can visit [Webpack Configuration](https://webpack.js.org/configuration/)
+<div align="center">
+    <img src="./assets/images/modal.png" alt="React Hook Form Logo - React hook custom hook for form validation" />
+</div>

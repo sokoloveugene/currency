@@ -87,3 +87,5 @@ typings/
 
 # Distributions
 dist/
+# Local Netlify folder
+.netlify
